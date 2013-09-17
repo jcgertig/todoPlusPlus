@@ -1,0 +1,29 @@
+<h1 style="margin-bottom: 20px; text-align: center;">Listing tasks</h1>
+
+<div style="margin-bottom: 5px;">
+  <% @tasks.each do |task| %>
+    <div class="well  well-small" style="min-width: 300px; margin: 5px 50px 0 50px;">
+      <table>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+        <tr>
+          <%= form_for task, :html => {:class => 'form-inline'} do |f|  %>
+            <td style="padding-right: 15px; margin: 5px 0 5px 0;"><%= task.body %></td>
+            <td style="padding-right: 10px; margin: 5px 0 5px 0;"><%= f.check_box :finished %>
+            <span class="help-inline">Finished?</span></td>
+            <td style="margin: 5px 0 5px 0;"><%= f.submit 'Update', :class => 'btn btn-small btn-success' %></td>
+          <% end %>
+          <td style="margin: 5px 0 5px 0;"><%= button_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger', style: "margin-top: 20px;" %></td>
+        </tr>
+      </table>
+    </div>
+  <% end %>
+</div>
+
+<div style="width: 100%; text-align: center;">
+  <%= button_to 'New Task', new_task_path, :class => 'btn btn-small btn-primary pull-right', :method => 'get', :style => "margin-right: 50px;" %>
+</div>
